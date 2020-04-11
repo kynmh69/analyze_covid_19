@@ -16,3 +16,10 @@ for prop in res.json()["features"]:
     propertyies_data.append(prop["properties"])
 
 df = DataFrame(propertyies_data)
+die_sum = []
+for i, x in df.iterrows():
+    if not isnull(x["死者合計"]) and not isnull(x["発症日"]):
+        die_sum.append([datetime.fromtimestamp(float(x["発症日"]) / 1000).strftime('%Y/%m/%d-%H:%M'), x["死者合計"]])
+
+die_df = DataFrame(die_sum, columns=["datetime", "die sum"])
+die_df.plot.bar(x="datetime")
