@@ -3,6 +3,7 @@ import json
 from typing import Union, Dict, List, Any
 from pandas import DataFrame, isnull
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 uri =  ('https://services6.arcgis.com/5jNaHNYe2AnnqRnS/arcgis/rest/services/COVID19_JapanData/FeatureServer/0'
         '/query?where=%E9%80%9A%E3%81%97%3E0&returnIdsOnly=false&returnCountOnly=false&&f='
@@ -23,3 +24,4 @@ for i, x in df.iterrows():
 
 die_df = DataFrame(die_sum, columns=["datetime", "die sum"])
 die_df.plot.bar(x="datetime")
+plt.show()
